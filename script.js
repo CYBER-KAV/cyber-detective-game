@@ -1,3 +1,6 @@
+window.onload = () => {
+    document.getElementById("loginBox").style.display = "block";
+};
 let score = 0;
 let step = 0;
 let timeLeft = 60;
