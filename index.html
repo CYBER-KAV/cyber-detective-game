@@ -1,37 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber Detective App</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CYBER DETECTIVE: NEURAL PROTOCOL</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<div class="app-container">
-
-    
-    <div class="screen active" id="loginScreen">
-        <h2>🔐 CYBER ACCESS</h2>
-        <input type="text" id="username" placeholder="Enter Codename">
-        <button onclick="startGame()">ENTER</button>
+<div id="screen-boot" class="screen active">
+  <div class="boot-wrap">
+    <div class="logo-glitch" data-text="CYBER DETECTIVE">CYBER DETECTIVE</div>
+    <div class="logo-sub">NEURAL PROTOCOL v4.2</div>
+    <div class="boot-terminal" id="boot-lines"></div>
+    <div id="boot-form" style="display:none">
+      <input id="codename-input" type="text" placeholder="ENTER CODENAME..." maxlength="16" autocomplete="off" spellcheck="false">
+      <button onclick="Game.start()">⚡ INITIALIZE AGENT</button>
     </div>
-
-    
-    <div class="screen" id="gameScreen">
-        <div class="header">
-            <h2>💀 CYBER DETECTIVE</h2>
-            <span id="timer">60s</span>
-        </div>
-
-        <div id="output"></div>
-        <div id="options"></div>
-
-        <button class="restart" onclick="restartGame()">🔁 Restart</button>
-    </div>
-
+  </div>
 </div>
 
-<script src="script.js"></script>
+<div id="screen-dashboard" class="screen">
+  <div class="dash-header">
+    <div class="dash-logo">CYBER DETECTIVE</div>
+    <div class="dash-agent">AGENT: <span id="dash-agent-name">---</span></div>
+  </div>
+
+  <div class="dash-stats-bar">
+    <div class="stat-card">
+      <div class="stat-label">TOTAL SCORE</div>
+      <div class="stat-val" id="dash-total-score">0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">LEVELS DONE</div>
+      <div class="stat-val" id="dash-levels-done">0 / 8</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">ACCURACY</div>
+      <div class="stat-val" id="dash-accuracy">0%</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">RANK</div>
+      <div class="stat-val" id="dash-rank">TRAINEE</div>
+    </div>
+  </div>
+
+  <div class="dash-levels-grid" id="dash-levels-grid"></div>
+
+  <div class="dash-footer">
+    <button class="btn-primary" id="dash-play-btn" onclick="Game.playNext()">▶ CONTINUE MISSION</button>
+  </div>
+</div>
+
+<div id="screen-level" class="screen">
+  
+  <canvas id="game-canvas"></canvas>
+
+  <div id="hud">
+    <div class="hud-left">
+      <div class="hud-lbl">AGENT</div>
+      <div id="hud-agent">---</div>
+    </div>
+    <div class="hud-center">
+      <div class="hud-lbl">MISSION</div>
+      <div id="hud-mission">---</div>
+    </div>
+    <div class="hud-right">
+      <div class="hud-block">
+        <div class="hud-lbl">SCORE</div>
+        <div id="hud-score">0</div>
+      </div>
+      <div class="hud-block">
+        <div class="hud-lbl">TIME</div>
+        <div id="hud-timer">60</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="computer-screen">
+    <div id="cs-header">
+      <div id="cs-dots"><span></span><span></span><span></span></div>
+      <div id="cs-title">TERMINAL</div>
+      <div id="cs-status">● LIVE</div>
+    </div>
+    <div id="cs-body">
+      <div id="cs-dialogue"></div>
+      <div id="cs-content"></div>
+      <div id="cs-question"></div>
+      <div id="cs-choices"></div>
+    </div>
+  </div>
+
+  <div id="feedback" style="display:none"></div>
+
+  <div id="hint-box" style="display:none">
+    <span>💡</span><span id="hint-text"></span>
+  </div>
+</div>
+
+<div id="screen-result" class="screen">
+  <div class="result-wrap">
+    <div class="result-badge" id="result-badge"></div>
+    <div class="result-title" id="result-title"></div>
+    <div class="result-grid">
+      <div class="result-item"><span class="ri-label">LEVEL</span><span class="ri-val" id="res-level"></span></div>
+      <div class="result-item"><span class="ri-label">SCORE</span><span class="ri-val" id="res-score"></span></div>
+      <div class="result-item"><span class="ri-label">TIME TAKEN</span><span class="ri-val" id="res-time"></span></div>
+      <div class="result-item"><span class="ri-label">RESULT</span><span class="ri-val" id="res-result"></span></div>
+    </div>
+    <div class="result-actions">
+      <button class="btn-primary" onclick="Game.goToDashboard()">📊 DASHBOARD</button>
+      <button class="btn-secondary" onclick="Game.playNext()">▶ NEXT LEVEL</button>
+    </div>
+  </div>
+</div>
+
+<div id="screen-final" class="screen">
+  <div class="final-wrap">
+    <div class="final-rank" id="final-rank"></div>
+    <div class="final-score" id="final-score"></div>
+    <div class="final-stats" id="final-stats"></div>
+    <button class="btn-primary" onclick="Game.restart()">↺ REINITIALIZE</button>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/missions.js"></script>
+<script src="js/world.js"></script>
+<script src="js/game.js"></script>
 </body>
 </html>
