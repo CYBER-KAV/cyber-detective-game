@@ -6,36 +6,22 @@ body {
 }
 
 
-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 0;
-}
-
 .login, .terminal {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 2;
+    border: 1px solid #00ff00;
+    padding: 20px;
+    width: 300px;
     text-align: center;
 }
 
 
-.login, .terminal {
-    background: rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    border: 1px solid #00ff00;
-    width: 300px;
-}
-
-
 input, button {
-    display: block;
     width: 100%;
-    margin: 10px 0;
     padding: 10px;
+    margin: 10px 0;
     background: black;
     color: #00ff00;
     border: 1px solid #00ff00;
@@ -45,7 +31,6 @@ button:hover {
     background: #00ff00;
     color: black;
 }
-
 
 #output {
     height: 200px;
