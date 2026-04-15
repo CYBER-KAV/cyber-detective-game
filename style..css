@@ -5,51 +5,32 @@ body {
     font-family: monospace;
 }
 
+
 canvas {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: -1;
+    z-index: 0;   
 }
 
-.login {
+
+.login, .terminal {
+    position: relative;
+    z-index: 1;  
     text-align: center;
-    margin-top: 150px;
+    margin-top: 100px;
 }
 
-input {
+input, button {
     padding: 10px;
+    margin: 5px;
     background: black;
     color: #00ff00;
     border: 1px solid #00ff00;
-}
-
-button {
-    background: black;
-    color: #00ff00;
-    border: 1px solid #00ff00;
-    padding: 10px;
     cursor: pointer;
 }
 
 button:hover {
     background: #00ff00;
     color: black;
-}
-
-.terminal {
-    padding: 20px;
-}
-
-#output {
-    height: 400px;
-    overflow-y: auto;
-    border: 1px solid #00ff00;
-    padding: 10px;
-}
-
-.option-btn {
-    display: block;
-    width: 100%;
-    margin: 5px 0;
 }
