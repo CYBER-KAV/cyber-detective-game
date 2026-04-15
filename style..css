@@ -1,39 +1,92 @@
 body {
     margin: 0;
-    background: black;
-    color: #00ff00;
     font-family: monospace;
+    background: #0d1117;
+    color: #00ff9f;
 }
 
 
-.login, .terminal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 1px solid #00ff00;
-    padding: 20px;
-    width: 300px;
-    text-align: center;
+.app-container {
+    max-width: 400px;
+    margin: auto;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
-input, button {
+.screen {
+    display: none;
     width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    background: black;
-    color: #00ff00;
-    border: 1px solid #00ff00;
+    background: #010409;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 0 15px #00ff9f33;
 }
 
-button:hover {
-    background: #00ff00;
+.screen.active {
+    display: block;
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#timer {
+    color: red;
+}
+
+/* OUTPUT */
+#output {
+    margin-top: 10px;
+    height: 200px;
+    overflow-y: auto;
+    border: 1px solid #00ff9f;
+    padding: 10px;
+    background: black;
+}
+
+/* OPTIONS */
+#options button {
+    width: 100%;
+    margin-top: 8px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #00ff9f;
+    background: black;
+    color: #00ff9f;
+}
+
+#options button:hover {
+    background: #00ff9f;
     color: black;
 }
 
-#output {
-    height: 200px;
-    overflow-y: auto;
-    text-align: left;
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: black;
+    border: 1px solid #00ff9f;
+    color: #00ff9f;
+}
+
+
+button {
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%;
+    background: black;
+    border: 1px solid #00ff9f;
+    color: #00ff9f;
+}
+
+button:hover {
+    background: #00ff9f;
+    color: black;
 }
