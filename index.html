@@ -1,22 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Cyber Detective</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Detective App</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="login" id="loginBox">
-    <h2>🔐 ACCESS TERMINAL</h2>
-    <input type="text" id="username" placeholder="Enter Codename">
-    <button onclick="startGame()">ENTER</button>
-</div>
+<div class="app-container">
 
-<div class="terminal" id="gameBox" style="display:none;">
-    <h1>💀 CYBER DETECTIVE SYSTEM</h1>
-    <div id="timer">Time: 60</div>
-    <div id="output"></div>
-    <button onclick="restartGame()">🔁 Restart</button>
+    
+    <div class="screen active" id="loginScreen">
+        <h2>🔐 CYBER ACCESS</h2>
+        <input type="text" id="username" placeholder="Enter Codename">
+        <button onclick="startGame()">ENTER</button>
+    </div>
+
+    
+    <div class="screen" id="gameScreen">
+        <div class="header">
+            <h2>💀 CYBER DETECTIVE</h2>
+            <span id="timer">60s</span>
+        </div>
+
+        <div id="output"></div>
+        <div id="options"></div>
+
+        <button class="restart" onclick="restartGame()">🔁 Restart</button>
+    </div>
+
 </div>
 
 <script src="script.js"></script>
